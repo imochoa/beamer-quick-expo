@@ -1,0 +1,97 @@
+% !TeX spellcheck = en_US
+\section{Making a standard section} 
+
+\begin{frame}\frametitle{YOUR TITLE}
+Normal old frame		
+\end{frame}
+
+\begin{frame}	
+	\begin{block}{Problem Summary}
+	Hey
+	\end{block}
+	
+	
+	\begin{exampleblock}{Recap}
+	Ho
+	\end{exampleblock}
+	
+	\begin{alertblock}{Going forward}
+	Let's go
+	\end{alertblock}
+
+\end{frame}
+
+
+\begin{nosidebarframe}
+\centering
+ If you want more space, use: \texttt{nosidebarframe}
+\end{nosidebarframe}
+
+
+
+
+
+
+\begin{frame}[containsverbatim]
+
+If you don't want to have the sidebar, you can use:
+
+\verb|\begin{nosidebarframe}|
+
+If you want a nice status report at the end, you can define tasks with a certain progression using:
+
+\verb|\begin{task}{My first task}{20}|
+
+That way, the \texttt{My first task} \textit{task} will be added to the status report at the end with a completion of \text{20\%}
+
+\end{frame}
+
+
+\begin{task}{My first task}{100}
+
+Not so complicated
+
+\end{task}
+
+\begin{task}{A more complicated task}{20}
+
+This one
+
+\pagebreak
+
+Was more complicated
+
+\pagebreak
+
+And required multiple pages
+\end{task}
+
+
+
+\begin{frame}[containsverbatim]
+	\begin{lstlisting}[language=json,firstnumber=1,basicstyle=\tiny]
+{
+    "glossary": {
+        "title": "example glossary",
+		"GlossDiv": {
+            "title": "S",
+			"GlossList": {
+                "GlossEntry": {
+                    "ID": "SGML",
+					"SortAs": "SGML",
+					"GlossTerm": "Standard Generalized Markup Language",
+					"Acronym": "SGML",
+					"Abbrev": "ISO 8879:1986",
+					"GlossDef": {
+                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
+						"GlossSeeAlso": ["GML", "XML"]
+                    },
+					"GlossSee": "markup"
+                }
+            }
+        }
+    }
+}
+	\end{lstlisting}		
+	\end{frame}
+

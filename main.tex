@@ -1,0 +1,142 @@
+% !TeX spellcheck = en_US
+
+% For pkg being imported elsewhere, specify the options before loading the package
+\PassOptionsToPackage{
+            colorlinks = true,
+            linkcolor = blue, % Also in the side panel sections
+			linkbordercolor = red,
+			urlcolor  = {blue!90!black},
+            citecolor = black,
+            anchorcolor = blue
+%			pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt
+}{hyperref}
+
+\documentclass[10pt]{beamer} % With pauses
+%\documentclass[handout,10pt]{beamer} % No pauses
+
+%\makeatletter
+%\def\Hy@colorlink#1{\begingroup\fontshape{bf}\selectfont}%
+%\makeatother
+
+% \makeatletter
+%\Hy@AtBeginDocument{%
+%  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+%  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+%                                % Hyperlink border style will be underline of width 1pt
+%}
+%\makeatother
+
+
+\usepackage{cleveref}
+% For loading images
+%\usepackage{graphicx} % Not needed with beamer
+\usepackage{grffile}
+
+\usepackage[official]{eurosym} % for the euro symbol \euro{}
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\usepackage{tabularx} % http://ctan.org/pkg/tabularx
+\usepackage{listings} % Code listings
+%\usepackage{xcolor} % Not needed with beamer
+\usepackage{default}
+\usepackage{array} % for defining a new column type
+\usepackage{varwidth} %for the varwidth minipage environment
+\usepackage{xifthen} % Logic
+\usepackage{multido}% Logic
+\usepackage{multimedia} % For movies
+\usepackage{import}
+
+
+% colors
+\subimport{preamble_src/}{custom_colors.tex}
+
+\newcommand\myshade{85}
+\definecolor{mylinkcolor}{rgb}{0.52, 0.09, 0.71}
+\definecolor{mycitecolor}{rgb}{0.89, 0.65, 0.13}
+\definecolor{myurlcolor}{rgb}{0.08, 0.55, 0.65}
+
+\hypersetup{
+  linkcolor  = mylinkcolor!\myshade!black,
+  citecolor  = mycitecolor!\myshade!black,
+  urlcolor   = myurlcolor!\myshade!black,
+  colorlinks = true,
+}
+
+% For JSON code snippetscm/100cm * 2
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+\lstdefinelanguage{json}{
+	basicstyle=\normalfont\ttfamily,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=lines,
+	backgroundcolor=\color{background},
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+}
+
+
+\graphicspath{{images/}}
+
+% Fill out the different parts of the header
+\subimport{}{preamble_src/custom_constructs.tex} % Normal input/include does not work for this
+\subimport{}{preamble_src/beamer_style.tex}
+
+
+
+% YOUR INFO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[]{[[[YOUR COOL TITLE]]]}   
+\author[]{[[[YOUR NAME]]]} 
+\institute[*]{\email{you@yourmail.com}}
+%\date{\today} 
+\date{} % no date 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+
+
+\begin{document}
+	
+	% Title frame without side panel and CENTERED	 (+/- depending on right/left side panel position)
+	\begin{nosidebarframe}\titlepage\end{nosidebarframe}
+	
+	% Table of contents
+	\frame{\frametitle{Table of contents}{\hypersetup{linkcolor=black}\tableofcontents}} 
+
+
+	% YOUR SECTIONS
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\input{sections/example_section.tex}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% Conclusion
+	\section{Status report} 
+
+		\completedTable
+
+		\inDevTable
+
+	\input{sections/proposals.tex}
+	
+
+\end{document}

@@ -1,0 +1,153 @@
+
+% For custom functions and envs
+
+\newcommand{\email}[1]{%
+        \href{mailto:#1}{\texttt{#1}}
+}
+
+
+
+
+
+% Color gradient
+ %The min, mid and max values
+\newcommand*{\MinNumber}{0.0}%
+\newcommand*{\MidNumber}{50.0} %
+\newcommand*{\MaxNumber}{100.0}%
+
+%Apply the gradient macro
+\newcommand{\ApplyGradient}[1]{%
+        \ifdim #1 pt > \MidNumber pt
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+            \color{green!\PercentColor!black}%{#1}
+        \else
+            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+            \color{red!\PercentColor!black}%{#1}
+        \fi
+}
+
+\newcommand{\GetPercent}[1]{%
+%        \ifnum #1 > 99
+%           \textcolor{green}{[#1\%]}
+%        \else  \ifnum #1 > 59
+%             \textcolor{yellow}{[#1\%]}
+%			 \else
+%                   \textcolor{red}{[#1\%]}
+%			  \fi
+%        \fi
+
+\ApplyGradient{#1} [#1]
+}
+
+
+
+
+% Custom tables
+	\newlength{\statusbarlen}
+    \setlength{\statusbarlen}{0.014cm}
+\newcommand{\statusbar}[1]{
+	\GetPercent{#1} & \ApplyGradient{#1}\rule{#1\statusbarlen}{0.2cm} % {\baselineskip}%
+}
+
+%\ApplyGradient{#1}
+\newcolumntype{M}{>{\begin{varwidth}{6cm}}l<{\end{varwidth}}} %M is for Maximal column
+
+\let\TableofdoneBody\relax
+\newcommand{\donetable}{\begin{tabularx}{\textwidth}{l}\TableofdoneBody\end{tabularx}}
+
+\let\TableofstatusesBody\relax
+\newcommand{\statustable}{\begin{tabularx}{\textwidth}{M  r  l}\TableofstatusesBody\end{tabularx}}
+
+% headers
+\gappto\TableofdoneBody{ \textbf{Finished} \\ \hline \hline}%
+\gappto\TableofstatusesBody{ \textbf{In progress} & \textbf{status [\%]} &  \\  \hline \hline}%
+
+\newcounter{FinishedCount}
+\newcounter{InDevCount}
+
+\newcommand{\addtotos}[2]{%
+        \ifnum #2 < 100
+			\stepcounter{InDevCount}
+			\gappto\TableofstatusesBody{\textbf{#1} & \statusbar{#2} \\}%
+        \else  
+			\stepcounter{FinishedCount}
+            \gappto\TableofdoneBody{\textbf{#1} \\}%
+        \fi
+  
+  
+}
+
+\newcommand{\completedTable}{%
+\ifnum\theFinishedCount>0
+    \subsection{Completed} \begin{frame}{\subsecname}	\noindent\donetable	\end{frame}
+\fi
+}
+
+\newcommand{\inDevTable}{%
+\ifnum\theInDevCount>0
+	\subsection{In development} \begin{frame}{\subsecname}		\noindent \statustable		\end{frame}
+\fi
+}
+
+
+% My custom environments 
+% \begin{task}{completion_in_percentage} ... \end{task}
+\newenvironment{task}[2]{
+
+\subsection{#1}
+\addtotos{#1}{#2}
+\begin{frame}[allowframebreaks=0.8]{\secname : \subsecname}
+}{
+\end{frame}
+}
+
+
+
+% \begin{myplainframe} ... \end{myplainframe}
+\makeatletter
+\newenvironment{nosidebarframe}[1][]{%
+  \ifthenelse{\isnamedefined{beamer@sidebarwidth}}{%
+    % Customize frametitle (changes from \defbeamertemplate*{frametitle}{sidebar
+    % theme} in `beamerouterthemesidebar.sty' flagged with `% <- !') 
+    \setbeamertemplate{frametitle}
+    {%
+      \nointerlineskip%
+      \ifbeamer@plainframe%
+      \hbox{\usebeamercolor[bg]{frametitle}%
+        \@tempdima\paperwidth%\advance\@tempdima-\beamer@sidebarwidth % <- !
+        \hskip-\beamer@leftmargin\vrule height\beamer@headheight width\@tempdima\hskip-\beamer@rightmargin}%
+      \nointerlineskip%
+      \fi%
+      \vskip-\beamer@headheight%
+      \vbox to \beamer@headheight{%
+        \vfil
+        \leftskip=-\beamer@leftmargin%
+        \advance\leftskip by0.3cm%
+        \rightskip=-\beamer@rightmargin%
+        \advance\rightskip by0.3cm plus1fil%
+        {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
+        {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+        \vbox{}%
+        \vskip-1em%
+        \vfil
+      }%
+    }%
+    \setbeamertemplate{background canvas}
+    {%
+      \ifbeamercolorempty[bg]{background canvas}{}{\color{bg}\vrule width\dimexpr\paperwidth+\beamer@leftsidebar\relax height\paperheight}%
+    }
+    % Customize the geometry (changes from options of geometry package in
+    % `beamer.cls' flagged with `% <- !')
+    \hoffset=-\beamer@leftsidebar
+    \advance\textwidth\beamer@sidebarwidth
+    \hsize\textwidth
+    \columnwidth\textwidth
+  }{%
+  }%
+  %
+  \begin{frame}[plain,#1]%
+  }{%
+  \end{frame}%
+
+}
+\makeatother
