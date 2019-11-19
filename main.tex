@@ -27,6 +27,11 @@
 %\makeatother
 
 
+%\usepackage[T1]{fontenc} % Messes with the font ...
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
 \usepackage{cleveref}
 % For loading images
 %\usepackage{graphicx} % Not needed with beamer
@@ -44,10 +49,12 @@
 \usepackage{multido}% Logic
 \usepackage{multimedia} % For movies
 \usepackage{import}
+\usepackage{tcolorbox} % Colored boxes
+\usepackage{totcount} % Keeps track of the counter TOTALs
 
 
 % colors
-\subimport{preamble_src/}{custom_colors.tex}
+\subimport{}{preamble_src/custom_colors.tex}
 
 \newcommand\myshade{85}
 \definecolor{mylinkcolor}{rgb}{0.52, 0.09, 0.71}
@@ -100,8 +107,8 @@
 
 % Fill out the different parts of the header
 \subimport{}{preamble_src/custom_constructs.tex} % Normal input/include does not work for this
-\subimport{}{preamble_src/beamer_style.tex}
-
+\subimport{}{preamble_src/styles/goettingen_style.tex}
+%\subimport{}{preamble_src/styles/metropolis_style.tex}
 
 
 % YOUR INFO
@@ -119,7 +126,9 @@
 	
 	% Title frame without side panel and CENTERED	 (+/- depending on right/left side panel position)
 	\begin{nosidebarframe}\titlepage\end{nosidebarframe}
-	
+
+    \listOfTodosFrame % Only appears if there actually are TODOs (\todo{})
+
 	% Table of contents
 	\frame{\frametitle{Table of contents}{\hypersetup{linkcolor=black}\tableofcontents}} 
 
@@ -132,9 +141,9 @@
 	% Conclusion
 	\section{Status report} 
 
-		\completedTable
+		\completedTable  %Only appears if there are compoleted \begin{tasks}{100} content...\end{tasks}
 
-		\inDevTable
+		\inDevTable %Only appears if there are compoleted \begin{tasks}{5} content...\end{tasks}
 
 	\input{sections/proposals.tex}
 	

@@ -102,6 +102,14 @@
 }
 
 
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
 
 % \begin{myplainframe} ... \end{myplainframe}
 \makeatletter
@@ -151,3 +159,41 @@
 
 }
 \makeatother
+
+
+
+
+% For the ToDos
+%\newcounter{todo}
+%\regtotcounter{todo}
+\newtotcounter{todo}
+
+\newtcbox{\mytodobox}{colback=orange,colframe=orange!75!black}
+
+\newcommand\todo[1]{%
+    \refstepcounter{todo} 
+    \mytodobox{\hypertarget{todo\thetodo}{#1}}
+    \addcontentsline{tod}{subsection}{\protect\hyperlink{todo\thetodo}{\thetodo~#1}\par} 
+}%
+
+\makeatletter
+\newcommand\listoftodos{%
+    \@starttoc{tod}}
+\makeatother
+
+%\ifnum\thetodo>0
+\newcommand{\listOfTodosFrame}{%
+
+  \ifnum\totvalue{todo}>0%
+	{\setbeamercolor{background canvas}{bg=red!50}
+	\begin{nosidebarframe} \frametitle{List of TODOs} \noindent \listoftodos\end{nosidebarframe}
+	}
+%     \begin{frame}{list of todos}		\end{frame}
+%     \begin{frame}{list of todos}	\noindent \listoftodos	\end{frame}
+  \fi%
+
+%\ifnum\totvalue{todo}>0
+%    \subsection{ToDos} \begin{frame}{\subsecname}	\noindent \listoftodos	\end{frame}
+%\fi
+}
+

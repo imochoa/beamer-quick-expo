@@ -1,0 +1,32 @@
+
+\usetheme{metropolis}
+%\usecolortheme{seahorse}
+
+% Title slide
+% ... make the institute fontsize larger
+\setbeamerfont{institute}{size=\normalsize }
+
+% No nav symbols 
+\beamertemplatenavigationsymbolsempty
+
+% When splitting frames:
+% ... Append "contd." to the title of every slide after the 1st one
+\setbeamertemplate{frametitle continuation}[from second][(contd.)] 
+
+% ... Hide the frame title after the 1st one (contradicts the previous one)
+\makeatletter
+\patchcmd{\beamer@continueautobreak}{\frametitle}{\beamer@gobbleoptional}{}{\errmessage{failed to patch}}
+\patchcmd{\beamer@continueautobreak}{\framesubtitle}{\beamer@gobbleoptional}{}{\errmessage{failed to patch}}
+\makeatother
+
+% To add a section frame automatically at each new section
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			{\hypersetup{linkcolor=blue!75!white}\usebeamerfont{title}\insertsectionhead\par}
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}
