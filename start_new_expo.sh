@@ -28,7 +28,12 @@ AUXDIR=$(ls new_presentation | grep imochoa-beamer-quick-expo | head -n 1)
 # AUXDIR=$(ls new_presentation | head -n 1)
 mv new_presentation/${AUXDIR}/* new_presentation/
 
-printf "\n${CYAN}Cleaning up...${NC}\n\n"
+printf "\n${CYAN}Cleaning up the working directory...${NC}\n\n"
 rm src_repo.zip
 find new_presentation/${AUXDIR}/ -type f -name ".*" -exec rm -f {} \;
 rmdir new_presentation/${AUXDIR}
+
+rm new_presentation/start_new_expo.sh;
+rm new_presentation/LICENSE;
+rm new_presentation/README.md;
+rm new_presentation/docs/* && rmdir new_presentation/docs;
