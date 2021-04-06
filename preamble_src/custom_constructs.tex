@@ -21,15 +21,20 @@
 \newcommand*{\MidNumber}{50.0} %
 \newcommand*{\MaxNumber}{100.0}%
 
+%The min, mid and max colors
+\newcommand*{\MinColor}{red}%
+\newcommand*{\MidColor}{orange} %
+\newcommand*{\MaxColor}{green}%
+
 %Apply the gradient macro
 \newcommand{\ApplyGradient}[1]{%
-        \ifdim #1 pt > \MidNumber pt
-            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
-            \color{green!\PercentColor!black}%{#1}
-        \else
-            \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
-            \color{red!\PercentColor!black}%{#1}
-        \fi
+    \ifdim #1 pt > \MidNumber pt
+    \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+    \color{\MaxColor!\PercentColor!\MidColor}%{#1}
+    \else
+    \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+    \color{\MinColor!\PercentColor!\MidColor}%{#1}
+    \fi
 }
 
 \newcommand{\GetPercent}[1]{%
@@ -91,7 +96,7 @@
 
 \newcommand{\inDevTable}{%
 \ifnum\theInDevCount>0
-	\subsection{In development} \begin{frame}{\subsecname}		\noindent \statustable		\end{frame}
+\subsection{In Progress} \begin{frame}{\subsecname}        \noindent \statustable        \end{frame}
 \fi
 }
 
@@ -102,7 +107,8 @@
 
 \subsection{#1}
 \addtotos{#1}{#2}
-\begin{frame}[allowframebreaks=0.8]{\secname : \subsecname}
+%\begin{frame}[allowframebreaks=0.8]{\secname : \subsecname}
+\begin{frame}[allowframebreaks=0.8]{\subsecname  \hspace{0.2cm} \small{\ApplyGradient{#2}[#2\%]}}
 }{
 \end{frame}
 }
