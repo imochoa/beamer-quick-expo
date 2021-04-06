@@ -7,30 +7,31 @@
 
 \section{Making a standard section}
 
-\begin{frame}\frametitle{YOUR TITLE}
-Normal old frame		
+\begin{frame}
+    \frametitle{YOUR TITLE}
+    Normal old frame
 \end{frame}
 
-\begin{frame}	
-	\begin{block}{Problem Summary}
-	Hey
-	\end{block}
-	
-	
-	\begin{exampleblock}{Recap}
-	Ho
-	\end{exampleblock}
-	
-	\begin{alertblock}{Going forward}
-	Let's go
-	\end{alertblock}
+\begin{frame}
+    \begin{block}{Problem Summary}
+        Hey
+    \end{block}
+
+
+    \begin{exampleblock}{Recap}
+        Ho
+    \end{exampleblock}
+
+    \begin{alertblock}{Going forward}
+        Let's go
+    \end{alertblock}
 
 \end{frame}
 
 
 \begin{nosidebarframe}
-\centering
- If you want more space, use: \texttt{nosidebarframe}
+    \centering
+    If you want more space, use: \texttt{nosidebarframe}
 \end{nosidebarframe}
 
 
@@ -45,42 +46,42 @@ Normal old frame
 
 \begin{frame}[containsverbatim]
 
-If you don't want to have the sidebar, you can use:
+    If you don't want to have the sidebar, you can use:
 
-\verb|\begin{nosidebarframe}|
+    \verb|\begin{nosidebarframe}|
 
-If you want a nice status report at the end, you can define tasks with a certain progression using:
+    If you want a nice status report at the end, you can define tasks with a certain progression using:
 
-\verb|\begin{task}{My first task}{20}|
+    \verb|\begin{task}{My first task}{20}|
 
-That way, the \texttt{My first task} \textit{task} will be added to the status report at the end with a completion of \text{20\%}
+    That way, the \texttt{My first task} \textit{task} will be added to the status report at the end with a completion of \text{20\%}
 
 \end{frame}
 
 
 \begin{task}{My first task}{100}
 
-Not so complicated \todo{Finish this}
+    Not so complicated \todo{Finish this}
 
 \end{task}
 
 \begin{task}{A more complicated task}{20}
 
-This one
+    This one
 
-\pagebreak
+    \pagebreak
 
-Was more complicated \todo{The list of TODOs disapears when there are no todos}
+    Was more complicated \todo{The list of TODOs disapears when there are no todos}
 
-\pagebreak
+    \pagebreak
 
-And required multiple pages
+    And required multiple pages
 \end{task}
 
 
 
 \begin{frame}[containsverbatim]
-	\begin{lstlisting}[language=json,firstnumber=1,basicstyle=\tiny]
+    \begin{lstlisting}[language=json,firstnumber=1,basicstyle=\tiny]
 {
     "glossary": {
         "title": "example glossary",
@@ -103,6 +104,6 @@ And required multiple pages
         }
     }
 }
-	\end{lstlisting}		
-	\end{frame}
+    \end{lstlisting}
+\end{frame}
 

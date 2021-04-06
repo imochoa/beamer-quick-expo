@@ -8,15 +8,12 @@
 % For custom functions and envs
 
 \newcommand{\email}[1]{%
-        \href{mailto:#1}{\texttt{#1}}
+    \href{mailto:#1}{\texttt{#1}}
 }
 
 
-
-
-
 % Color gradient
- %The min, mid and max values
+%The min, mid and max values
 \newcommand*{\MinNumber}{0.0}%
 \newcommand*{\MidNumber}{50.0} %
 \newcommand*{\MaxNumber}{100.0}%
@@ -47,17 +44,15 @@
 %			  \fi
 %        \fi
 
-\ApplyGradient{#1} [#1]
+    \ApplyGradient{#1} [#1]
 }
 
 
-
-
 % Custom tables
-	\newlength{\statusbarlen}
-    \setlength{\statusbarlen}{0.014cm}
+\newlength{\statusbarlen}
+\setlength{\statusbarlen}{0.014cm}
 \newcommand{\statusbar}[1]{
-	\GetPercent{#1} & \ApplyGradient{#1}\rule{#1\statusbarlen}{0.2cm} % {\baselineskip}%
+    \GetPercent{#1} & \ApplyGradient{#1}\rule{#1\statusbarlen}{0.2cm} % {\baselineskip}%
 }
 
 %\ApplyGradient{#1}
@@ -67,7 +62,7 @@
 \newcommand{\donetable}{\begin{tabularx}{\textwidth}{l}\TableofdoneBody\end{tabularx}}
 
 \let\TableofstatusesBody\relax
-\newcommand{\statustable}{\begin{tabularx}{\textwidth}{M  r  l}\TableofstatusesBody\end{tabularx}}
+\newcommand{\statustable}{\begin{tabularx}{\textwidth}{M r l}\TableofstatusesBody\end{tabularx}}
 
 % headers
 \gappto\TableofdoneBody{ \textbf{Finished} \\ \hline \hline}%
@@ -77,20 +72,20 @@
 \newcounter{InDevCount}
 
 \newcommand{\addtotos}[2]{%
-        \ifnum #2 < 100
-			\stepcounter{InDevCount}
-			\gappto\TableofstatusesBody{\textbf{#1} & \statusbar{#2} \\}%
-        \else  
-			\stepcounter{FinishedCount}
-            \gappto\TableofdoneBody{\textbf{#1} \\}%
-        \fi
-  
-  
+\ifnum #2 < 100
+\stepcounter{InDevCount}
+\gappto\TableofstatusesBody{\textbf{#1} & \statusbar{#2} \\}%
+\else
+\stepcounter{FinishedCount}
+\gappto\TableofdoneBody{\textbf{#1} \\}%
+\fi
+
+
 }
 
 \newcommand{\completedTable}{%
 \ifnum\theFinishedCount>0
-    \subsection{Completed} \begin{frame}{\subsecname}	\noindent\donetable	\end{frame}
+\subsection{Completed} \begin{frame}{\subsecname}    \noindent\donetable    \end{frame}
 \fi
 }
 
@@ -101,7 +96,7 @@
 }
 
 
-% My custom environments 
+% My custom environments
 % \begin{task}{completion_in_percentage} ... \end{task}
 \newenvironment{task}[2]{
 
@@ -116,63 +111,61 @@
 
 \newcommand\Wider[2][3em]{%
 \makebox[\linewidth][c]{%
-  \begin{minipage}{\dimexpr\textwidth+#1\relax}
-  \raggedright#2
-  \end{minipage}%
-  }%
+\begin{minipage}{\dimexpr\textwidth+#1\relax}
+\raggedright#2
+\end{minipage}%
+}%
 }
 
 
 % \begin{myplainframe} ... \end{myplainframe}
 \makeatletter
 \newenvironment{nosidebarframe}[1][]{%
-  \ifthenelse{\isnamedefined{beamer@sidebarwidth}}{%
-    % Customize frametitle (changes from \defbeamertemplate*{frametitle}{sidebar
-    % theme} in `beamerouterthemesidebar.sty' flagged with `% <- !') 
-    \setbeamertemplate{frametitle}
-    {%
-      \nointerlineskip%
-      \ifbeamer@plainframe%
-      \hbox{\usebeamercolor[bg]{frametitle}%
-        \@tempdima\paperwidth%\advance\@tempdima-\beamer@sidebarwidth % <- !
-        \hskip-\beamer@leftmargin\vrule height\beamer@headheight width\@tempdima\hskip-\beamer@rightmargin}%
-      \nointerlineskip%
-      \fi%
-      \vskip-\beamer@headheight%
-      \vbox to \beamer@headheight{%
-        \vfil
-        \leftskip=-\beamer@leftmargin%
-        \advance\leftskip by0.3cm%
-        \rightskip=-\beamer@rightmargin%
-        \advance\rightskip by0.3cm plus1fil%
-        {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
-        {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
-        \vbox{}%
-        \vskip-1em%
-        \vfil
-      }%
-    }%
-    \setbeamertemplate{background canvas}
-    {%
-      \ifbeamercolorempty[bg]{background canvas}{}{\color{bg}\vrule width\dimexpr\paperwidth+\beamer@leftsidebar\relax height\paperheight}%
-    }
-    % Customize the geometry (changes from options of geometry package in
-    % `beamer.cls' flagged with `% <- !')
-    \hoffset=-\beamer@leftsidebar
-    \advance\textwidth\beamer@sidebarwidth
-    \hsize\textwidth
-    \columnwidth\textwidth
-  }{%
-  }%
-  %
-  \begin{frame}[plain,#1]%
-  }{%
-  \end{frame}%
+\ifthenelse{\isnamedefined{beamer@sidebarwidth}}{%
+% Customize frametitle (changes from \defbeamertemplate*{frametitle}{sidebar
+% theme} in `beamerouterthemesidebar.sty' flagged with `% <- !')
+\setbeamertemplate{frametitle}
+{%
+\nointerlineskip%
+\ifbeamer@plainframe%
+\hbox{\usebeamercolor[bg]{frametitle}%
+\@tempdima\paperwidth%\advance\@tempdima-\beamer@sidebarwidth % <- !
+\hskip-\beamer@leftmargin\vrule height\beamer@headheight width\@tempdima\hskip-\beamer@rightmargin}%
+\nointerlineskip%
+\fi%
+\vskip-\beamer@headheight%
+\vbox to \beamer@headheight{%
+\vfil
+\leftskip=-\beamer@leftmargin%
+\advance\leftskip by0.3cm%
+\rightskip=-\beamer@rightmargin%
+\advance\rightskip by0.3cm plus1fil%
+{\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
+{\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+\vbox{}%
+\vskip-1em%
+\vfil
+}%
+}%
+\setbeamertemplate{background canvas}
+{%
+\ifbeamercolorempty[bg]{background canvas}{}{\color{bg}\vrule width\dimexpr\paperwidth+\beamer@leftsidebar\relax height\paperheight}%
+}
+% Customize the geometry (changes from options of geometry package in
+% `beamer.cls' flagged with `% <- !')
+\hoffset=-\beamer@leftsidebar
+\advance\textwidth\beamer@sidebarwidth
+\hsize\textwidth
+\columnwidth\textwidth
+}{%
+}%
+%
+\begin{frame}[plain,#1]%
+}{%
+\end{frame}%
 
 }
 \makeatother
-
-
 
 
 % For the ToDos
@@ -183,26 +176,26 @@
 \newtcbox{\mytodobox}{colback=orange,colframe=orange!75!black}
 
 \newcommand\todo[1]{%
-    \refstepcounter{todo} 
-    \mytodobox{\hypertarget{todo\thetodo}{#1}}
-    \addcontentsline{tod}{subsection}{\protect\hyperlink{todo\thetodo}{\thetodo~#1}\par} 
+\refstepcounter{todo}
+\mytodobox{\hypertarget{todo\thetodo}{#1}}
+\addcontentsline{tod}{subsection}{\protect\hyperlink{todo\thetodo}{\thetodo~#1}\par}
 }%
 
 \makeatletter
 \newcommand\listoftodos{%
-    \@starttoc{tod}}
+\@starttoc{tod}}
 \makeatother
 
 %\ifnum\thetodo>0
 \newcommand{\listOfTodosFrame}{%
 
-  \ifnum\totvalue{todo}>0%
-	{\setbeamercolor{background canvas}{bg=red!50}
-	\begin{nosidebarframe} \frametitle{List of TODOs} \noindent \listoftodos\end{nosidebarframe}
-	}
+\ifnum\totvalue{todo}>0%
+{\setbeamercolor{background canvas}{bg=red!50}
+\begin{nosidebarframe} \frametitle{List of TODOs} \noindent \listoftodos\end{nosidebarframe}
+}
 %     \begin{frame}{list of todos}		\end{frame}
 %     \begin{frame}{list of todos}	\noindent \listoftodos	\end{frame}
-  \fi%
+\fi%
 
 %\ifnum\totvalue{todo}>0
 %    \subsection{ToDos} \begin{frame}{\subsecname}	\noindent \listoftodos	\end{frame}

@@ -7,12 +7,12 @@
 
 % For pkg being imported elsewhere, specify the options before loading the package
 \PassOptionsToPackage{
-            colorlinks = true,
-            linkcolor = blue, % Also in the side panel sections
-			linkbordercolor = red,
-			urlcolor  = {blue!90!black},
-            citecolor = black,
-            anchorcolor = blue
+    colorlinks = true,
+    linkcolor = blue, % Also in the side panel sections
+    linkbordercolor = red,
+    urlcolor  = {blue!90!black},
+    citecolor = black,
+    anchorcolor = blue
 %			pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt
 }{hyperref}
 
@@ -69,10 +69,10 @@
 \definecolor{myurlcolor}{rgb}{0.08, 0.55, 0.65}
 
 \hypersetup{
-  linkcolor  = mylinkcolor!\myshade!black,
-  citecolor  = mycitecolor!\myshade!black,
-  urlcolor   = myurlcolor!\myshade!black,
-  colorlinks = true,
+    linkcolor  = mylinkcolor!\myshade!black,
+    citecolor  = mycitecolor!\myshade!black,
+    urlcolor   = myurlcolor!\myshade!black,
+    colorlinks = true,
 }
 
 % For JSON code snippetscm/100cm * 2
@@ -81,32 +81,32 @@
 \definecolor{delim}{RGB}{20,105,176}
 \colorlet{numb}{magenta!60!black}
 \lstdefinelanguage{json}{
-	basicstyle=\normalfont\ttfamily,
-	numbers=left,
-	numberstyle=\scriptsize,
-	stepnumber=1,
-	numbersep=8pt,
-	showstringspaces=false,
-	breaklines=true,
-	frame=lines,
-	backgroundcolor=\color{background},
-	literate=
-	*{0}{{{\color{numb}0}}}{1}
-	{1}{{{\color{numb}1}}}{1}
-	{2}{{{\color{numb}2}}}{1}
-	{3}{{{\color{numb}3}}}{1}
-	{4}{{{\color{numb}4}}}{1}
-	{5}{{{\color{numb}5}}}{1}
-	{6}{{{\color{numb}6}}}{1}
-	{7}{{{\color{numb}7}}}{1}
-	{8}{{{\color{numb}8}}}{1}
-	{9}{{{\color{numb}9}}}{1}
-	{:}{{{\color{punct}{:}}}}{1}
-	{,}{{{\color{punct}{,}}}}{1}
-	{\{}{{{\color{delim}{\{}}}}{1}
-	{\}}{{{\color{delim}{\}}}}}{1}
-	{[}{{{\color{delim}{[}}}}{1}
-	{]}{{{\color{delim}{]}}}}{1},
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+    *{0}{{{\color{numb}0}}}{1}
+        {1}{{{\color{numb}1}}}{1}
+        {2}{{{\color{numb}2}}}{1}
+        {3}{{{\color{numb}3}}}{1}
+        {4}{{{\color{numb}4}}}{1}
+        {5}{{{\color{numb}5}}}{1}
+        {6}{{{\color{numb}6}}}{1}
+        {7}{{{\color{numb}7}}}{1}
+        {8}{{{\color{numb}8}}}{1}
+        {9}{{{\color{numb}9}}}{1}
+        {:}{{{\color{punct}{:}}}}{1}
+        {,}{{{\color{punct}{,}}}}{1}
+        {\{}{{{\color{delim}{\{}}}}{1}
+        {\}}{{{\color{delim}{\}}}}}{1}
+        {[}{{{\color{delim}{[}}}}{1}
+        {]}{{{\color{delim}{]}}}}{1},
 }
 
 
@@ -123,39 +123,45 @@
 
 % YOUR INFO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[]{[[[YOUR COOL TITLE]]]}   
-\author[]{[[[YOUR NAME]]]} 
-\institute[*]{\email{you@yourmail.com}}
-%\date{\today} 
-\date{} % no date 
+\title[]{Nevada status}
+\author[]{spanflug}
+\institute[*]{\email{ignacio.martin.ochoa@spanflug.de}}
+\date{\today}
+%\date{} % no date
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
 
 
 \begin{document}
-	
-	% Title frame without side panel and CENTERED	 (+/- depending on right/left side panel position)
-	\begin{nosidebarframe}\titlepage\end{nosidebarframe}
+
+    % Title frame without side panel and CENTERED	 (+/- depending on right/left side panel position)
+    \begin{nosidebarframe}
+        \titlepage
+    \end{nosidebarframe}
 
     \listOfTodosFrame % Only appears if there actually are TODOs (\todo{})
 
-	% Table of contents
-	\frame{\frametitle{Table of contents}{\hypersetup{linkcolor=black}\tableofcontents}} 
+    % Table of contents
+    \frame{\frametitle{Table of contents}{\hypersetup{linkcolor=black}\tableofcontents}}
 
 
-	% YOUR SECTIONS
+    % YOUR SECTIONS
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\input{sections/example_section.tex}
+    \input{sections/example_section.tex}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	% Conclusion
-	\section{Status report} 
 
-		\completedTable  %Only appears if there are compoleted \begin{tasks}{100} content...\end{tasks}
+    % Conclusion
 
-		\inDevTable %Only appears if there are compoleted \begin{tasks}{5} content...\end{tasks}
 
-	\input{sections/proposals.tex}
-	
+    \section{Status report}
+
+    \completedTable  %Only appears if there are compoleted \begin{tasks}{100} content...\end{tasks}
+
+    \inDevTable %Only appears if there are compoleted \begin{tasks}{5} content...\end{tasks}
+
+
+    \section{Outlook}
+    \input{sections/proposals.tex}
+
 
 \end{document}
